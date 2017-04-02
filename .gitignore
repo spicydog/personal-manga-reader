@@ -3,3 +3,10 @@
 
 .idea/
 manga.iml
+config.php
+files/*
+!files/index.html
+meta/*
+!meta/index.html
+crawlers/*
+!crawlers/index.html

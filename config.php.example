@@ -1,0 +1,33 @@
+<?php
+
+// List of the manga to be download
+const MANGA_LIST = [
+  'manga-panda' => [
+    'maoyuu-maou-yuusha',
+    'one-piece',
+  ],
+];
+
+// URL of the website
+const PUBLIC_URL    =  'https://www.example.com/manga/';
+
+// Directory to store last manga download and cache
+const META_DIR      =  'meta/';
+
+// Directory to store the image files
+const FILES_DIR     =  'files/';
+
+// Directory of the crawler scripts
+const CRAWLER_DIR   =  'crawlers/';
+
+// Time interval in seconds to avoid same crawler run at the same time
+const BUSY_INTERVAL =  60;
+
+// Page download limit per run
+const DOWNLOAD_LIMIT =  50;
+
+// Download page retry limit
+const RETRY_LIMIT =  3;
+
+// Try next n page in advance if the current page fail
+const ADVANCE_RETRY_LIMIT =  4;
