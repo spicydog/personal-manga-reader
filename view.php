@@ -55,11 +55,11 @@ $html = '<!DOCTYPE html>
                 
         {{breadcrumb}}
         
-        {{episode_nav}}
+        {{chapter_nav}}
 
         {{content}}
 
-        {{episode_bottom}}
+        {{chapter_bottom}}
 
       </div>
 
@@ -78,9 +78,9 @@ function view($data) {
   $html = str_replace('{{breadcrumb}}', breadcrumb($data['breadcrumb']), $html);
   $html = str_replace('{{navbar}}', navbar($data['names'], $data['title']), $html);
 
-  $html = str_replace('{{episode_nav}}', isset($data['episode']) ? episode_nav($data['title'], $data['episode']) : '', $html);
+  $html = str_replace('{{chapter_nav}}', isset($data['chapter']) ? chapter_nav($data['source'], $data['title'], $data['chapter']) : '', $html);
 
-  $html = str_replace('{{episode_bottom}}', isset($data['episode']) && strpos($data['content'], 'img') ? episode_nav($data['title'], $data['episode']) : '', $html);
+  $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['title'], $data['chapter']) : '', $html);
 
   return $html;
 }
@@ -91,13 +91,13 @@ function convert_name($id) {
   return $name;
 }
 
-function episode_nav($name, $episode) {
+function chapter_nav($source, $name, $chapter) {
 
   $html = '<div>';
-  if ($episode > 1) {
-    $prev = intval($episode) - 1;
+  if ($chapter > 1) {
+    $prev = intval($chapter) - 1;
     $html .= '
-    <a href="index.php?name=' . $name . '&episode=' . $prev . '">
+    <a href="index.php?source=' . $source . '&name=' . $name . '&chapter=' . $prev . '">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       </button>
@@ -105,11 +105,11 @@ function episode_nav($name, $episode) {
     ';
   }
 
-  $html .= '<button type="button" class="btn btn-default" disabled><strong>Chapter ' . $episode . '<strong></button>';
+  $html .= '<button type="button" class="btn btn-default" disabled><strong>Chapter ' . $chapter . '<strong></button>';
 
-  $next = intval($episode) + 1;
+  $next = intval($chapter) + 1;
   $html .= '  
-    <a href="index.php?name=' . $name . '&episode=' . $next . '">
+    <a href="index.php?source=' . $source . '&name=' . $name . '&chapter=' . $next . '">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       </button>
