@@ -8,6 +8,9 @@ const MANGA_LIST = [
   ],
 ];
 
+// Title of the website
+const SITE_TITLE    =  'Personal Manga Reader';
+
 // URL of the website
 const PUBLIC_URL    =  'https://www.example.com/manga/';
 
