@@ -16,10 +16,17 @@ function get_manga_list() {
 }
 
 // Get manga job
-$manga_list = get_manga_list();
-$selected_index = rand() % count($manga_list);
-
-$job = $manga_list[$selected_index];
+if (isset($argv) && count($argv) === 3) {
+  $job['crawler'] = $argv[1];
+  $job['name'] = $argv[2];
+} else if (! empty($_GET['crawler']) && ! empty($_GET['name'])) {
+  $job['crawler'] = $_GET['crawler'];
+  $job['name'] = $_GET['name'];
+} else {
+  $manga_list = get_manga_list();
+  $selected_index = rand() % count($manga_list);
+  $job = $manga_list[$selected_index];
+}
 
 // Include crawler
 $crawler_path = CRAWLER_DIR . $job['crawler'] . '.php';
