@@ -86,6 +86,21 @@ function make_manga_dir($job) {
   return $file_chapter_path;
 }
 
+function clear_cache($job) {
+  @unlink(FILES_DIR . 'index.json');
+  $file_crawler_path = FILES_DIR . $job['crawler'] . '/';
+  if (file_exists($file_crawler_path)) {
+    @unlink($file_crawler_path . 'index.json');
+    $file_manga_path = $file_crawler_path . $job['name'] . '/';
+    if (file_exists($file_manga_path)) {
+      @unlink($file_crawler_path . 'index.json');
+      $file_chapter_path = $file_manga_path . $job['chapter'] . '/';
+      if (file_exists($file_chapter_path)) {
+        @unlink($file_chapter_path . 'index.json');
+      }
+    }
+  }
+}
 
 $has_update = false;
 $retry_advance = 0;
@@ -119,6 +134,9 @@ for ($i = 0; $i < DOWNLOAD_LIMIT; $i++) {
       echo "Success\n";
       $success = true;
 
+      // Remove cache
+      clear_cache($job);
+
       $next_job = get_next_job($job);
       break;
     } else {
@@ -141,6 +159,7 @@ for ($i = 0; $i < DOWNLOAD_LIMIT; $i++) {
 }
 
 if ($has_update) {
+  // TODO push notification
   echo sprintf("There are update for %s\n", $job['name']);
 } else {
   echo sprintf("No update for %s\n", $job['name']);
