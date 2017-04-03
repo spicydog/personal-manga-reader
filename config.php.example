@@ -34,3 +34,7 @@ const RETRY_LIMIT =  3;
 
 // Try next n page in advance if the current page fail
 const ADVANCE_RETRY_LIMIT =  4;
+
+// Pushbullet notification
+const NOTIFY_VIA_PUSHBULLET =  false;
+const PUSHBULLET_ACCESS_TOKEN = 'ENTER_PUSHBULLET_NOTIFICATION_HERE';
