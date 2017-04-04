@@ -2,6 +2,11 @@
 
 require_once('config.php');
 
+if (isset($_SERVER['REQUEST_METHOD']) && ! ALLOW_GET_REQUEST_DOWNLOADER) {
+  header('HTTP/1.1 400 BAD REQUEST');
+  exit();
+}
+
 function get_manga_list() {
   $list = [];
   foreach (MANGA_LIST as $crawler => $names) {
