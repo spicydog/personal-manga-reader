@@ -70,6 +70,8 @@ $html = '<!DOCTYPE html>
 
 define('HTML_TEMPLATE', $html);
 
+require_once('functions.php');
+
 function view($data) {
   $html = HTML_TEMPLATE;
 
@@ -83,12 +85,6 @@ function view($data) {
   $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['title'], $data['chapter']) : '', $html);
 
   return $html;
-}
-
-function convert_name($id) {
-  $name = str_replace('-', ' ', $id);
-  $name = ucwords($name);
-  return $name;
 }
 
 function chapter_nav($source, $name, $chapter) {
