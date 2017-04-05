@@ -41,3 +41,6 @@ const PUSHBULLET_ACCESS_TOKEN = 'ENTER_PUSHBULLET_NOTIFICATION_HERE';
 
 // Allow get request for downloader
 const ALLOW_GET_REQUEST_DOWNLOADER = false;
+
+// Request image after download, for CDN caching
+const REQUEST_AFTER_DOWNLOAD = false;

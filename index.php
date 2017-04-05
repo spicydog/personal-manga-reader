@@ -79,7 +79,7 @@ function get_images($crawler, $name, $chapter) {
 
 function generate_image_urls($crawler, $name, $chapter, $images) {
   $urls = [];
-  $chapter_path = FILES_DIR . '/' . $crawler . '/' . $name . '/' . $chapter . '/';
+  $chapter_path = FILES_DIR . $crawler . '/' . $name . '/' . $chapter . '/';
   foreach ($images as $image) {
     $urls[] = $chapter_path . $image;
   }

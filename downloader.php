@@ -83,6 +83,12 @@ for ($i = 0; $i < DOWNLOAD_LIMIT; $i++) {
       // Save the job
       file_put_contents($meta_manga_path, json_encode($job));
 
+      if (REQUEST_AFTER_DOWNLOAD) {
+        $page_url = PUBLIC_URL . FILES_DIR . $job['crawler'] .
+          '/' . $job['name'] . '/' . $job['chapter'] . '/' . $job['page'] . '.jpg';
+        file_get_contents($page_url);
+      }
+
       unset($result);
       $has_update = true;
 
