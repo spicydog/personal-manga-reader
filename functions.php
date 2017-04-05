@@ -52,7 +52,7 @@ function clear_cache($job) {
     @unlink($file_crawler_path . 'index.json');
     $file_manga_path = $file_crawler_path . $job['name'] . '/';
     if (file_exists($file_manga_path)) {
-      @unlink($file_crawler_path . 'index.json');
+      @unlink($file_manga_path . 'index.json');
       $file_chapter_path = $file_manga_path . $job['chapter'] . '/';
       if (file_exists($file_chapter_path)) {
         @unlink($file_chapter_path . 'index.json');
