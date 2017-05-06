@@ -95,9 +95,30 @@ if (count($_GET) === 0) {
 
   $crawlers  = get_crawlers();
 
-  foreach ($crawlers as $crawler) {
+    $recent_file = META_DIR . 'recent.json';
+    $recents = @file_get_contents($recent_file);
+    $recents = explode("\n", $recents);
+    if (count($recents)) {
+        $data['content'] .= '<div><h2>Recent Update</h2></div>';
+        $data['content'] .= '<ul>';
+        $exists = [];
+        foreach ($recents as $line) {
+            $record = json_decode($line, true);
+            $name = sprintf('[%s] %s - %d', convert_name($record['crawler']), convert_name($record['name']), $record['chapter']);
+            if (! isset($exists[$name])) {
+                $exists[$name] = true;
+                $link = 'index.php?source=' . $record['crawler'] . '&name=' . $record['name'] . '&chapter=' . $record['chapter'];
+                $date = date('Y-m-d G:H', $record['time']);
+                $data['content'] .= "<li>$date - <a href=\"$link\">" . $name . "</a></li>";
+            }
+        }
+        $data['content'] .= '</ul>';
+    }
 
-    $data['content'] .= '<div><h2>' . convert_name($crawler) . '</h2></div>';
+
+    foreach ($crawlers as $crawler) {
+
+    $data['content'] .= '<div><h3>' . convert_name($crawler) . '</h3></div>';
 
     $names = get_names($crawler);
     $data['names'] = $names;

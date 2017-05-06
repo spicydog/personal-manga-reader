@@ -122,6 +122,14 @@ for ($i = 0; $i < DOWNLOAD_LIMIT; $i++) {
 }
 
 if ($has_update) {
+  $row = json_encode($job) . "\n";
+  $recent_file = META_DIR . 'recent.json';
+  $content = file_get_contents($recent_file);
+  $content = $row . $content;
+  $lines = explode("\n", $content);
+  $lines = array_slice($lines, 0, 10);
+  file_put_contents($recent_file, implode("\n", $lines));
+
   echo sprintf("There are update for %s\n", $job['name']);
   if (NOTIFY_VIA_PUSHBULLET) {
     echo sprintf("Sending pushbullet notification\n");
