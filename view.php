@@ -92,7 +92,8 @@ function view($data) {
   $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
 
   $html = str_replace('{{google_analytics}}', ga_script(GA_TAG), $html);
-
+  
+  ob_start("sanitize_output");
   return $html;
 }
 
@@ -166,4 +167,27 @@ function ga_script($tag) {
   ga('send', 'pageview');
 
   </script>";
+}
+
+
+function sanitize_output($buffer) {
+  // Reference: https://stackoverflow.com/a/6225706/967802
+
+  $search = array(
+      '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
+      '/[^\S ]+\</s',     // strip whitespaces before tags, except space
+      '/(\s)+/s',         // shorten multiple whitespace sequences
+      '/<!--(.|\s)*?-->/' // Remove HTML comments
+  );
+
+  $replace = array(
+      '>',
+      '<',
+      '\\1',
+      ''
+  );
+
+  $buffer = preg_replace($search, $replace, $buffer);
+
+  return $buffer;
 }
