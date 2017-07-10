@@ -14,6 +14,9 @@ const SITE_TITLE    =  'Personal Manga Reader';
 // URL of the website
 const PUBLIC_URL    =  'https://www.example.com/manga/';
 
+// Google Analytics e.g. UA-#######-#
+const GA_TAG        =  '';
+
 // Directory to store last manga download and cache
 const META_DIR      =  'meta/';
 

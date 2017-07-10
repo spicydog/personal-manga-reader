@@ -65,6 +65,8 @@ $html = '<!DOCTYPE html>
 
     </div>
 
+    {{google_analytics}}
+
   </body>
 </html>';
 
@@ -83,6 +85,8 @@ function view($data) {
   $html = str_replace('{{chapter_nav}}', isset($data['chapter']) ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
 
   $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
+
+  $html = str_replace('{{google_analytics}}', ga_script(GA_TAG), $html);
 
   return $html;
 }
@@ -140,4 +144,21 @@ function breadcrumb($items) {
   }
   $html .= '</ol>';
   return $html;
+}
+
+function ga_script($tag) {
+  if (empty($tag)) {
+    return '';
+  }
+
+  return "<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '$tag', 'auto');
+  ga('send', 'pageview');
+
+  </script>";
 }
