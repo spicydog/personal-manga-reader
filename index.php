@@ -171,6 +171,7 @@ if (count($_GET) === 2 && isset($_GET['source']) && isset($_GET['name'])) {
   $data = [];
   $data['source'] = $crawler;
   $data['names'] = $names;
+  $data['name'] = $name;
   $data['title'] = $name;
 
   $data['content'] = '<div><h3>Chapters</h3></div>';
@@ -205,7 +206,8 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $data = [];
   $data['source'] = $crawler;
   $data['names'] = $names;
-  $data['title'] = $name;
+  $data['name'] = $name;
+  $data['title'] = $name . ' ' . $chapter;
   $data['chapter'] = $chapter;
   $data['content'] = '';
   if (count($urls) > 0) {

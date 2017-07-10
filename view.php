@@ -80,9 +80,9 @@ function view($data) {
   $html = str_replace('{{breadcrumb}}', breadcrumb($data['breadcrumb']), $html);
   $html = str_replace('{{navbar}}', navbar($data['names'], $data['title']), $html);
 
-  $html = str_replace('{{chapter_nav}}', isset($data['chapter']) ? chapter_nav($data['source'], $data['title'], $data['chapter']) : '', $html);
+  $html = str_replace('{{chapter_nav}}', isset($data['chapter']) ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
 
-  $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['title'], $data['chapter']) : '', $html);
+  $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
 
   return $html;
 }
