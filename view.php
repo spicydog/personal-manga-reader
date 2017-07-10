@@ -87,9 +87,9 @@ function view($data) {
   $html = str_replace('{{breadcrumb}}', breadcrumb($data['breadcrumb']), $html);
   $html = str_replace('{{navbar}}', navbar($data['names'], $data['title']), $html);
 
-  $html = str_replace('{{chapter_nav}}', isset($data['chapter']) ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
+  $html = str_replace('{{chapter_nav}}', isset($data['chapter_nav']) ? chapter_nav($data['chapter_nav']) : '', $html);
 
-  $html = str_replace('{{chapter_bottom}}', isset($data['chapter']) && strpos($data['content'], 'img') ? chapter_nav($data['source'], $data['name'], $data['chapter']) : '', $html);
+  $html = str_replace('{{chapter_bottom}}', isset($data['chapter_nav']) && strpos($data['content'], 'img') ? chapter_nav($data['chapter_nav']) : '', $html);
 
   $html = str_replace('{{google_analytics}}', ga_script(GA_TAG), $html);
   
@@ -97,13 +97,17 @@ function view($data) {
   return $html;
 }
 
-function chapter_nav($source, $name, $chapter) {
+function chapter_nav($info) {
+
+  $source = $info['source'];
+  $name = $info['name'];
+  $prev = $info['prev'];
+  $next = $info['next'];
 
   $html = '<div>';
-  if ($chapter > 1) {
-    $prev = intval($chapter) - 1;
+  if ($prev > 0) {
     $html .= '
-    <a href="index.php?source=' . $source . '&name=' . $name . '&chapter=' . $prev . '">
+    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['prev'] . '">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       </button>
@@ -111,16 +115,17 @@ function chapter_nav($source, $name, $chapter) {
     ';
   }
 
-  $html .= '<button type="button" class="btn btn-default" disabled><strong>Chapter ' . $chapter . '<strong></button>';
+  $html .= '<button type="button" class="btn btn-default" disabled><strong>Chapter ' . $info['chapter'] . '<strong></button>';
 
-  $next = intval($chapter) + 1;
-  $html .= '  
-    <a href="index.php?source=' . $source . '&name=' . $name . '&chapter=' . $next . '">
+  if ($next > 0) {
+    $html .= '
+    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['next'] . '">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       </button>
     </a>
-  ';
+    ';
+  }
 
   $html .= '</div>';
 

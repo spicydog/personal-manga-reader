@@ -219,6 +219,35 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $data['description'] = 'Read manga ' . convert_name($name) . ' chapter ' . $chapter;
 
   $data['chapter'] = $chapter;
+
+
+  $data['chapter_nav'] = [
+    'source' => $crawler,
+    'name' => $name,
+    'chapter' => $chapter,
+    'prev' => null, 
+    'next' => null
+  ];
+
+  if ($chapter >= 1) {
+
+    // Previous chapter
+    if ($chapter >= 2) {
+      $prev = $chapter - 1;
+      $prev_imgs = get_images($crawler, $name, $prev);
+      if (count($prev_imgs) > 0) {
+        $data['chapter_nav']['prev'] = $prev;
+      }
+    }
+
+    // Next chapter
+    $next = $chapter + 1;
+    $next_imgs = get_images($crawler, $name, $next);
+    if (count($next_imgs) > 0) {
+      $data['chapter_nav']['next'] = $next;
+    }
+  }
+
   $data['content'] = '';
   if (count($urls) > 0) {
     foreach ($urls as $i => $url) {
