@@ -151,6 +151,11 @@ if (count($_GET) === 1 && isset($_GET['source'])) {
   $data['content'] .= '<div><h3>Manga List</h3></div>';
 
   $names = get_names($crawler);
+
+  if (count($names) === 0) {
+    page_not_found();
+  }
+  
   $data['names'] = $names;
 
   $data['content'] .= '<ul>';
@@ -172,6 +177,10 @@ if (count($_GET) === 2 && isset($_GET['source']) && isset($_GET['name'])) {
 
   $names = get_names($crawler);
   sort($names);
+
+  if (count($chapters) === 0) {
+    page_not_found();
+  }
 
   $data = [];
   $data['source'] = $crawler;
@@ -205,6 +214,11 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $chapter = $_GET['chapter'];
 
   $images = get_images($crawler, $name, $chapter);
+
+  if (count($images) === 0) {
+    page_not_found();
+  }
+
   $urls = generate_image_urls($crawler, $name, $chapter, $images);
 
   $names = get_names($crawler);

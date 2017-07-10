@@ -1,5 +1,10 @@
 <?php
 
+function page_not_found() {
+  http_response_code(404);
+  die();
+}
+
 $html = '<!DOCTYPE html>
 <html lang="en">
 
