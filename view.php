@@ -153,7 +153,7 @@ function breadcrumb($items) {
 }
 
 function ga_script($tag) {
-  if (empty($tag)) {
+  if (empty($tag) || $tag === 'GA_TAG') {
     return '';
   }
 
