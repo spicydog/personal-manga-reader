@@ -4,10 +4,13 @@ $html = '<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0">
 
-    <title>{{title}}</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -78,6 +81,8 @@ function view($data) {
   $html = HTML_TEMPLATE;
 
   $html = str_replace('{{title}}', convert_name($data['title']), $html);
+  $html = str_replace('{{description}}', $data['description'], $html);
+
   $html = str_replace('{{content}}', $data['content'], $html);
   $html = str_replace('{{breadcrumb}}', breadcrumb($data['breadcrumb']), $html);
   $html = str_replace('{{navbar}}', navbar($data['names'], $data['title']), $html);

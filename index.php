@@ -90,6 +90,9 @@ if (count($_GET) === 0) {
 
   $data = [];
   $data['title'] = SITE_TITLE;
+  $data['description'] = 'The simplest manga online website!';
+
+  
   $data['breadcrumb'][0] = ['link' => 'index.php', 'name' => 'Home'];
   $data['content'] = '';
 
@@ -139,6 +142,8 @@ if (count($_GET) === 1 && isset($_GET['source'])) {
 
   $data = [];
   $data['title'] = $crawler;
+  $data['description'] = 'Enjoy your favorite manga from ' . convert_name($crawler);
+
   $data['breadcrumb'][0] = ['link' => 'index.php', 'name' => 'Home'];
   $data['breadcrumb'][1] = ['link' => "index.php?source=$crawler", 'name' => convert_name($crawler)];
   $data['content'] = '';
@@ -172,7 +177,9 @@ if (count($_GET) === 2 && isset($_GET['source']) && isset($_GET['name'])) {
   $data['source'] = $crawler;
   $data['names'] = $names;
   $data['name'] = $name;
+
   $data['title'] = $name;
+  $data['description'] = 'List of the latest ' . convert_name($name) . ' manga';
 
   $data['content'] = '<div><h3>Chapters</h3></div>';
   $data['content'] .= '<ul>';
@@ -207,7 +214,10 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $data['source'] = $crawler;
   $data['names'] = $names;
   $data['name'] = $name;
+
   $data['title'] = $name . ' ' . $chapter;
+  $data['description'] = 'Read manga ' . convert_name($name) . ' chapter ' . $chapter;
+
   $data['chapter'] = $chapter;
   $data['content'] = '';
   if (count($urls) > 0) {
