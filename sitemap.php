@@ -6,9 +6,6 @@ $records = [];
 
 if ( isset($_GET['action']) ) {
   switch ($_GET['action']) {
-    case 'recent':
-      $records = get_recent_sitemap();
-      break;
     case 'manga':
       $records = get_manga_sitemap();
       break;
@@ -18,7 +15,7 @@ if ( isset($_GET['action']) ) {
       break;
   }
 } else {
-  $records = get_sitemaps();
+  $records = array_merge(get_recent_sitemap(), get_sitemaps());
 }
 
 
@@ -42,7 +39,6 @@ echo $output;
 
 function get_sitemaps() {
   $records = [
-    ['url' => PUBLIC_URL . htmlspecialchars('sitemap.php?action=recent')],
     ['url' => PUBLIC_URL . htmlspecialchars('sitemap.php?action=manga')],
   ];
 
