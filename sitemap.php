@@ -43,7 +43,7 @@ echo $output;
 function get_sitemaps() {
   $records = [
     ['url' => PUBLIC_URL . htmlspecialchars('sitemap.php?action=recent')],
-    ['url' => PUBLIC_URL . htmlspecialchars('sitemap.php?action=list')],
+    ['url' => PUBLIC_URL . htmlspecialchars('sitemap.php?action=manga')],
   ];
 
   return $records;
