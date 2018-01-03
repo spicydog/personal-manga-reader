@@ -5,6 +5,8 @@ The application consists of manga crawler, that will download manga from another
 
 This application was focused on lightweight to run on low power CPU devices such as RaspberryPi and Linux on mobile devices.
 
+__DEMO:__ [https://www.spicydog.tk/manga](https://www.spicydog.tk/manga)
+
 ## Installation
 1. Copy or rename `config.php.example` to `config.php`
 1. Config constants in `config.php` to match your environment
