@@ -41,7 +41,7 @@ function download($job) {
   }
 
   $image_url = get_inner_string($html,'id="img"','alt=');
-  $image_url = substr($image_url, strpos($image_url, 'http://') );
+  $image_url = substr($image_url, strpos($image_url, 'https://') );
   $image_url = substr($image_url, 0, strpos($image_url, '"') );
 
   if (strlen($image_url) > 10) {
