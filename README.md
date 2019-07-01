@@ -10,5 +10,5 @@ __DEMO:__ [https://manga.spicydog.org](https://manga.spicydog.org) (Running on m
 ## Installation
 1. Copy or rename `config.php.example` to `config.php`
 1. Adjust constants in `config.php` to match your environment
-1. Run `download.php` to start downloading  (you can use args to specific manga to download e.g.`php download.php manga-panda one-piece`)
+1. Run `downloader.php` to start downloading  (you can use args to specific manga to download e.g.`php downloader.php manga-panda one-piece`)
 1. Browse `index.php` on web browser to read manga
