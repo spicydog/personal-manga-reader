@@ -8,9 +8,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && ! ALLOW_GET_REQUEST_DOWNLOADER) {
 }
 
 // Get manga job
-if (isset($argv) && count($argv) === 3) {
-  $job['crawler'] = $argv[1];
-  $job['name'] = $argv[2];
+if (isset($argv)) {
+  if (count($argv) >= 3) {
+    $job['crawler'] = $argv[1];
+    $job['name'] = $argv[2];
+  }
+  if (count($argv) >= 4) {
+    $job['chapter'] = $argv[3]-1;
+  }
 } else if (! empty($_GET['crawler']) && ! empty($_GET['name'])) {
   $job['crawler'] = $_GET['crawler'];
   $job['name'] = $_GET['name'];
@@ -54,7 +59,8 @@ if (file_exists($meta_manga_path)) {
     }
   }
 }
-$job = array_merge($job, $meta);
+
+$job = array_merge($meta, $job);
 
 $has_update = false;
 $retry_advance = 0;
