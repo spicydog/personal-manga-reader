@@ -8,6 +8,12 @@ const MANGA_LIST = [
   ],
 ];
 
+// Rename manga slug to this name
+const MANGA_SLUG_NAMES = [
+  'uv917720' => 'Fairy Tail 100 Years Quest',
+  'read_one_piece_manga_online_free4' => 'One Piece',
+];
+
 // Title of the website
 const SITE_TITLE    =  'Personal Manga Reader';
 
