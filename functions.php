@@ -86,7 +86,8 @@ function notify_pushbullet($job) {
 }
 
 function convert_name($id) {
-  $name = str_replace('-', ' ', $id);
+  $name = MANGA_SLUG_NAMES[$id] ?? $id;
+  $name = str_replace('-', ' ', $name);
   $name = ucwords($name);
   return $name;
 }
