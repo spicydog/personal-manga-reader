@@ -146,7 +146,7 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $data['names'] = $names;
   $data['name'] = $name;
 
-  $data['title'] = $name . ' ' . $chapter;
+  $data['title'] = convert_name($name) . ' ' . $chapter;
   $data['description'] = 'Read manga ' . convert_name($name) . ' chapter ' . $chapter;
 
   $data['chapter'] = $chapter;
