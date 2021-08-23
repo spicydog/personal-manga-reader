@@ -15,7 +15,7 @@ jobs:
     - name: docker login
       run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --platform linux/amd64,linux/arm64,linux/arm/v7 --tag app_image
+      run: docker buildx build . --platform linux/amd64,linux/arm64,linux/arm/v7 --tag app_image
     - name: Docker Push
       run: |
         docker tag app_image ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA
