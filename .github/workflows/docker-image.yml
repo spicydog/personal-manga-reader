@@ -15,6 +15,6 @@ jobs:
     - name: docker login
       run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag personal-manga-reader:latest
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/personal-manga-reader
+      run: docker push ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA
