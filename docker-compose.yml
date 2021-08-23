@@ -2,7 +2,11 @@ version: '3.8'
 services:
   app:
     image: php:7.4-apache
+    # build: .
     volumes:
       - .:/var/www/html/
+      # - ./config.php:/var/www/html/config.php
+      # - ./files:/var/www/html/files
+      # - ./meta:/var/www/html/meta
     ports:
       - 8080:80
