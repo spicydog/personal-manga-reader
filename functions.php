@@ -122,6 +122,7 @@ function get_crawlers() {
 function get_names($crawler) {
   $names = [];
   $crawler_path = FILES_DIR . '/' . $crawler . '/';
+  print_r([FILES_DIR,$crawler_path]);
   if (file_exists($crawler_path)) {
     $content = @file_get_contents($crawler_path . 'index.json');
     if (strlen($content) > 2) {
