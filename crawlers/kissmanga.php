@@ -31,7 +31,7 @@ function download($job) {
   $chapter = $job['chapter'];
   $page = $job['page'];
 
-  $url = "https://kissmanga.org/chapter/$name/chapter_$chapter";
+  $url = "https://kissmanga.org/chapter/$name/chapter-$chapter";
 
   $html = file_get_contents($url);
 
