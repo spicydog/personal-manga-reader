@@ -121,7 +121,7 @@ function get_crawlers() {
 
 function get_names($crawler) {
   $names = [];
-  $crawler_path = FILES_DIR . '/' . $crawler . '/';
+  $crawler_path = FILES_DIR . $crawler . '/';
   print_r([FILES_DIR,$crawler_path]);
   if (file_exists($crawler_path)) {
     $content = @file_get_contents($crawler_path . 'index.json');
@@ -138,7 +138,7 @@ function get_names($crawler) {
 
 function get_chapters($crawler, $name) {
   $chapters = [];
-  $name_path = FILES_DIR . '/' . $crawler . '/' . $name . '/';
+  $name_path = FILES_DIR . $crawler . '/' . $name . '/';
   if (file_exists($name_path)) {
     $content = @file_get_contents($name_path . 'index.json');
     if (strlen($content) > 2) {
@@ -154,7 +154,7 @@ function get_chapters($crawler, $name) {
 
 function get_images($crawler, $name, $chapter) {
   $images = [];
-  $chapter_path = FILES_DIR . '/' . $crawler . '/' . $name . '/' . $chapter . '/';
+  $chapter_path = FILES_DIR . $crawler . '/' . $name . '/' . $chapter . '/';
   if (file_exists($chapter_path)) {
     $content = @file_get_contents($chapter_path . 'index.json');
     if (strlen($content) > 2 && false) {
@@ -170,7 +170,7 @@ function get_images($crawler, $name, $chapter) {
 
 function generate_image_urls($crawler, $name, $chapter, $images) {
   $urls = [];
-  $chapter_path = FILES_DIR . $crawler . '/' . $name . '/' . $chapter . '/';
+  $chapter_path = FILES_DIR . $crawler . $name . '/' . $chapter . '/';
   foreach ($images as $image) {
     $urls[] = $chapter_path . $image;
   }
