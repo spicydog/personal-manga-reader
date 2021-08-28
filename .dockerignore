@@ -3,3 +3,7 @@ files/*
 !files/index.html
 meta/*
 !meta/index.html
+Dockerfile
+.github
+docker-compose.yml
+config.php.example
