@@ -151,4 +151,7 @@ if ($has_update) {
 
 // Sleep before next run
 $delay = $_ENV['DELAY'] ?? 0;
-sleep($delay);
+if ($delay > 0) {
+  echo "Delay before next run $delay seconds\n";
+  sleep($delay);
+}
