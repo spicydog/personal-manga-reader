@@ -7,8 +7,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && ! ALLOW_GET_REQUEST_DOWNLOADER) {
   exit();
 }
 
+$engine = 'n/a';
+
 // Get manga job
 if (isset($argv)) {
+  $engine = 'argv';
   if (count($argv) >= 3) {
     $job['crawler'] = $argv[1];
     $job['name'] = $argv[2];
@@ -17,13 +20,23 @@ if (isset($argv)) {
     $job['chapter'] = $argv[3]-1;
   }
 } else if (! empty($_GET['crawler']) && ! empty($_GET['name'])) {
+  $engine = 'get';
   $job['crawler'] = $_GET['crawler'];
   $job['name'] = $_GET['name'];
+} else if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
+  $engine = 'env';
+  $job['crawler'] = $_ENV['CRAWLER'];
+  $job['name'] = $_ENV['NAME'];
+  if(! empty($_ENV['CRAWLER'])) {
+    $job['chapter'] = $_ENV['CHAPTER'];
+  }
 } else {
   $manga_list = get_manga_list();
   $selected_index = rand() % count($manga_list);
   $job = $manga_list[$selected_index];
 }
+
+echo 'Run : ' . $engine . ' : ' . $job['crawler'] ?? 'n/a' . ' : ' . $job['name'] ?? 'n/a' . ' : ' . $job['chapter'] ?? 'n/a';
 
 // Include crawler
 $crawler_path = CRAWLER_DIR . $job['crawler'] . '.php';
@@ -144,3 +157,7 @@ if ($has_update) {
 } else {
   echo sprintf("No update for %s\n", $job['name']);
 }
+
+// Sleep before next run
+$delay = $_ENV['DELAY'] ?? 0;
+sleep($delay);
