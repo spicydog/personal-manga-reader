@@ -17,15 +17,6 @@ if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
   if(! empty($_ENV['CRAWLER'])) {
     $job['chapter'] = $_ENV['CHAPTER'];
   }
-} else if (isset($argv)) {
-  $engine = 'argv';
-  if (count($argv) >= 3) {
-    $job['crawler'] = $argv[1];
-    $job['name'] = $argv[2];
-  }
-  if (count($argv) >= 4) {
-    $job['chapter'] = $argv[3]-1;
-  }
 } else if (! empty($_GET['crawler']) && ! empty($_GET['name'])) {
   $engine = 'get';
   $job['crawler'] = $_GET['crawler'];
@@ -36,7 +27,7 @@ if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
   $job = $manga_list[$selected_index];
 }
 
-echo 'Run : ' . $engine . ' : ' . $job['crawler'] ?? 'n/a' . ' : ' . $job['name'] ?? 'n/a' . ' : ' . $job['chapter'] ?? 'n/a';
+echo 'Run : ' . $engine . ' : ' . $job['crawler'] ?? 'n/a' . ' : ' . $job['name'] ?? 'n/a' . ' : ' . $job['chapter'] ?? 'n/a' . "\n";
 
 // Include crawler
 $crawler_path = CRAWLER_DIR . $job['crawler'] . '.php';
