@@ -14,7 +14,7 @@ if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
   $engine = 'env';
   $job['crawler'] = $_ENV['CRAWLER'];
   $job['name'] = $_ENV['NAME'];
-  if(! empty($_ENV['CRAWLER'])) {
+  if(! empty($_ENV['CHAPTER'])) {
     $job['chapter'] = $_ENV['CHAPTER'];
   }
 } else if (! empty($_GET['crawler']) && ! empty($_GET['name'])) {
