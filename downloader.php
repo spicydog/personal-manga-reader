@@ -10,7 +10,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && ! ALLOW_GET_REQUEST_DOWNLOADER) {
 $engine = 'n/a';
 
 // Get manga job
-if (isset($argv)) {
+if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
+  $engine = 'env';
+  $job['crawler'] = $_ENV['CRAWLER'];
+  $job['name'] = $_ENV['NAME'];
+  if(! empty($_ENV['CRAWLER'])) {
+    $job['chapter'] = $_ENV['CHAPTER'];
+  }
+} else if (isset($argv)) {
   $engine = 'argv';
   if (count($argv) >= 3) {
     $job['crawler'] = $argv[1];
@@ -23,13 +30,6 @@ if (isset($argv)) {
   $engine = 'get';
   $job['crawler'] = $_GET['crawler'];
   $job['name'] = $_GET['name'];
-} else if (! empty($_ENV['CRAWLER']) && ! empty($_ENV['NAME'])) {
-  $engine = 'env';
-  $job['crawler'] = $_ENV['CRAWLER'];
-  $job['name'] = $_ENV['NAME'];
-  if(! empty($_ENV['CRAWLER'])) {
-    $job['chapter'] = $_ENV['CHAPTER'];
-  }
 } else {
   $manga_list = get_manga_list();
   $selected_index = rand() % count($manga_list);
