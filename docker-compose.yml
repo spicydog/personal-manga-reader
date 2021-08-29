@@ -10,3 +10,6 @@ services:
       # - ./meta:/var/www/html/meta
     ports:
       - 8080:80
+    environment: 
+      - ROLE=app
+    command: /bin/bash start.sh
