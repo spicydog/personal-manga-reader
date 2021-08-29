@@ -21,6 +21,6 @@ jobs:
     - name: Build and push Docker image
       run: |
         docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-        docker build . --platform linux/arm/v7,linux/arm64,linux/arm64/v8 -t ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA -t ${{secrets.DOCKER_USER}}/personal-manga-reader:latest --push
+        docker build . --platform linux/arm/v7,linux/arm/v8,linux/arm64,linux/amd64 -t ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA -t ${{secrets.DOCKER_USER}}/personal-manga-reader:latest --push
         echo "Docker push successfully"
         echo ${{secrets.DOCKER_USER}}/personal-manga-reader:$GITHUB_SHA
