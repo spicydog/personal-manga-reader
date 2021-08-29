@@ -19,21 +19,27 @@ function get_inner_string($string, $begin, $end) {
 }
 
 function array_filter_extensions($array, $extensions) {
-  return array_filter($array, function($img) use ($extensions) {
+  return array_filter($array, function($item) use ($extensions) {
     $found = false;
     foreach($extensions as $extension) {
       $extension = '.' . $extension;
       $extension = str_replace('..', '.', $extension);
-      if (strpos($img, strtolower($extension)) > 0) {
+      if (strpos($item, strtolower($extension)) !== false) {
         $found = true;
         break;
       }
-      if (strpos($img, strtoupper($extension)) > 0) {
+      if (strpos($item, strtoupper($extension)) !== false) {
         $found = true;
         break;
       }
     }
     return $found;
+  });
+}
+
+function array_filter_contain_neddle($array, $neddle) {
+  return array_filter($array, function($item) use ($neddle) {
+    return strpos($item, $neddle) !== false;
   });
 }
 
