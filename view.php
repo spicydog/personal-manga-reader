@@ -43,7 +43,7 @@ $html = '<!DOCTYPE html>
       </div>
     </nav>
 
-    <div class="container" style="margin-top: 50px;">
+    <div class="container" style="margin-top:40px; margin-bottom:40px;">
 
       <div class="starter-template">
       
@@ -100,7 +100,7 @@ function chapter_nav($info) {
   $html = '<div>';
   if ($prev > 0) {
     $html .= '
-    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['prev'] . '">
+    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['prev'] . '" style="text-decoration:none">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       </button>
@@ -112,7 +112,7 @@ function chapter_nav($info) {
 
   if ($next > 0) {
     $html .= '
-    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['next'] . '">
+    <a href="index.php?source=' . $source . '&name=' . $info['name'] . '&chapter=' . $info['next'] . '" style="text-decoration:none">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       </button>
