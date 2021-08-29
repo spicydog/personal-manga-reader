@@ -1,27 +1,11 @@
 <?php
 
-function get_inner_string($string, $begin, $end) {
-  if($begin === 0)
-    return substr( $string, 0, strpos($string, $end) );
-  if($end === 0)
-    return substr($string, strpos($string, $begin) + strlen($begin));
-
-  $string = ' ' . $string;
-  $init = strpos($string, $begin);
-
-  if ($init == 0)
-    return '';
-
-  $init += strlen($begin);
-  $len = strpos($string, $end, $init) - $init;
-
-  return substr($string, $init, $len);
-}
+require_once 'utils.inc';
 
 // Code for test
 // download([
 //   'name' => 'one-piece',
-//   'chapter' => '2',
+//   'chapter' => '1',
 //   'page' => 1,
 // ]);
 
@@ -40,19 +24,11 @@ function download($job) {
   $url = "https://onepiece-manga-online.net/manga/$name-chapter-$chapter/";
 
   $html = file_get_contents($url);
-
   $imgs = explode('og:image" content=', $html);
-  $imgs = array_filter($imgs, function($img) {
-    return strpos($img, '.png') > 0 || strpos($img, '.jpg') > 0 || strpos($img, '.jpeg') > 0;
-  });
-
-  $imgs = array_map(function($img) {
-    return get_inner_string($img, '"', '"');
-  }, $imgs);
+  $imgs = array_map_double_qoutes($imgs);
+  $imgs = array_filter_extensions($imgs, ['.png', '.jpg', '.jpeg']);
 
   $imgs = array_values($imgs);
-
-  print_r($imgs);
 
   $job['last_page'] = count($imgs);
 
