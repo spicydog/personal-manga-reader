@@ -5,7 +5,11 @@ The application consists of manga reader website and crawlers, that download man
 
 This application is focusing on the lightweight that aims to run on Raspberry Pi and Linux on mobile devices.
 
-__DEMO:__ [https://manga.spicydog.org](https://manga.spicydog.org) (Running on my Raspberry Pi 400 at home and go online with Cloudflare Argo Tunnel)
+__DEMO:__ [https://manga.spicydog.org](https://manga.spicydog.org) (Running on my Raspberry Pi 400 in Portainer at home and go online with Cloudflare Argo Tunnel)
+
+__DOCKER REPO:__ [https://hub.docker.com/repository/docker/spicydog/personal-manga-reader](https://hub.docker.com/repository/docker/spicydog/personal-manga-reader)
+
+__GITHUB REPO:__ [https://github.com/spicydog/personal-manga-reader](https://github.com/spicydog/personal-manga-reader)
 
 ## Installation
 1. Copy or rename `config.php.example` to `config.php`
