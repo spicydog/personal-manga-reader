@@ -3,7 +3,27 @@
 require('functions.php');
 require('view.php');
 
-if (count($_GET) === 0) {
+echo display_content();
+
+function display_content() {
+  $crawler = $_GET['source'] ?? null;
+  $name = $_GET['name'] ?? null;
+  $chapter = $_GET['chapter'] ?? null;
+    
+  if (! empty($crawler) && ! empty($name) && ! empty($chapter)) {
+    return display_manga_chapter($crawler, $name, $chapter);
+  }
+  if (! empty($crawler) && ! empty($name)) {
+    return display_manga_chapter_index($crawler, $name);
+  }
+  if (! empty($crawler)) {
+    return display_crawler_index($crawler);
+  }
+
+  return display_homepage();
+}
+
+function display_homepage() {
 
   $data = [];
   $data['title'] = SITE_TITLE;
@@ -49,13 +69,10 @@ if (count($_GET) === 0) {
     $data['content'] .= '</ul>';
   }
 
-  echo view($data);
+  return view($data);
 }
 
-
-if (count($_GET) === 1 && isset($_GET['source'])) {
-
-  $crawler = $_GET['source'];
+function display_crawler_index($crawler) {
 
   $data = [];
   $data['title'] = $crawler;
@@ -82,16 +99,13 @@ if (count($_GET) === 1 && isset($_GET['source'])) {
   }
   $data['content'] .= '</ul>';
 
-  echo view($data);
+  return view($data);
 }
 
-if (count($_GET) === 2 && isset($_GET['source']) && isset($_GET['name'])) {
-
-  $name = $_GET['name'];
-  $crawler = $_GET['source'];
+function display_manga_chapter_index($crawler, $name) {
 
   $chapters = get_chapters($crawler, $name);
-
+  
   $names = get_names($crawler);
   sort($names);
 
@@ -121,14 +135,10 @@ if (count($_GET) === 2 && isset($_GET['source']) && isset($_GET['name'])) {
   $data['breadcrumb'][1] = ['link' => "index.php?source=$crawler", 'name' => convert_name($crawler)];
   $data['breadcrumb'][2] = ['link' => "index.php?source=$crawler&name=$name", 'name' => convert_name($name)];
 
-  echo view($data);
+  return view($data);
 }
 
-if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && isset($_GET['chapter'])) {
-
-  $crawler = $_GET['source'];
-  $name = $_GET['name'];
-  $chapter = $_GET['chapter'];
+function display_manga_chapter($crawler, $name, $chapter) {
 
   $images = get_images($crawler, $name, $chapter);
 
@@ -194,5 +204,5 @@ if (count($_GET) === 3 && isset($_GET['source'])  && isset($_GET['name']) && iss
   $data['breadcrumb'][2] = ['link' => "index.php?source=$crawler&name=$name", 'name' => convert_name($name)];
   $data['breadcrumb'][3] = ['link' => "index.php?source=$crawler&name=$name&chapter=$chapter", 'name' => "Chapter $chapter"];
 
-  echo view($data);
+  return view($data);
 }
