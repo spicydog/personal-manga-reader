@@ -51,8 +51,6 @@ function download($job) {
   $content = get_inner_string($html, '<img class="open"', '/>');
   $image_url = get_inner_string($content, '"', '"');
 
-  print_r($image_url);
-
   if (strlen($image_url) > 10) {
     $image = file_get_contents($image_url);
     if (strlen($image) > 100) {
