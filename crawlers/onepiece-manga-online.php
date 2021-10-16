@@ -30,16 +30,18 @@ function download($job) {
 
   $imgs = array_values($imgs);
 
-  $job['last_page'] = count($imgs);
+  if (count($imgs) > 8) {
+    $job['last_page'] = count($imgs);
 
-  $image_url = $imgs[$page-1];
+    $image_url = $imgs[$page-1];
 
-  if (strlen($image_url) > 10) {
-    $image = file_get_contents($image_url);
-    if (strlen($image) > 100) {
-      $result['success'] = true;
-      $result['image'] = $image;
-      $result['job'] = $job;
+    if (strlen($image_url) > 10) {
+      $image = file_get_contents($image_url);
+      if (strlen($image) > 100) {
+        $result['success'] = true;
+        $result['image'] = $image;
+        $result['job'] = $job;
+      }
     }
   }
   
