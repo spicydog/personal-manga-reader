@@ -1,0 +1,55 @@
+<?php
+
+// List of the manga to be download
+const MANGA_LIST = [
+  'manga-panda' => [
+    'maoyuu-maou-yuusha',
+    'one-piece',
+  ],
+];
+
+// Rename manga slug to this name
+const MANGA_SLUG_NAMES = [
+  'uv917720' => 'Fairy Tail 100 Years Quest',
+  'read_one_piece_manga_online_free4' => 'One Piece',
+];
+
+// Title of the website
+const SITE_TITLE    =  'Personal Manga Reader';
+
+// URL of the website
+const PUBLIC_URL    =  'https://www.example.com/manga/';
+
+// Google Analytics e.g. UA-#######-#
+const GA_TAG        =  '';
+
+// Directory to store last manga download and cache
+const META_DIR      =  'meta/';
+
+// Directory to store the image files
+const FILES_DIR     =  'files/';
+
+// Directory of the crawler scripts
+const CRAWLER_DIR   =  'crawlers/';
+
+// Time interval in seconds to avoid same crawler run at the same time
+const BUSY_INTERVAL =  60;
+
+// Page download limit per run
+const DOWNLOAD_LIMIT =  50;
+
+// Download page retry limit
+const RETRY_LIMIT =  3;
+
+// Try next n page in advance if the current page fail
+const ADVANCE_RETRY_LIMIT =  4;
+
+// Pushbullet notification
+const NOTIFY_VIA_PUSHBULLET =  false;
+const PUSHBULLET_ACCESS_TOKEN = 'ENTER_PUSHBULLET_NOTIFICATION_HERE';
+
+// Allow get request for downloader
+const ALLOW_GET_REQUEST_DOWNLOADER = false;
+
+// Request image after download, for CDN caching
+const REQUEST_AFTER_DOWNLOAD = false;
